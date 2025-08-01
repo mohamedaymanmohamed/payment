@@ -129,6 +129,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # PayPal Sandbox Credentials
 # settings.py
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 import os
 
