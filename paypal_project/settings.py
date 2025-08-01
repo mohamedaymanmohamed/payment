@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-@(858t&oi9jtb*odrn2*lw+0yuf^ul51x-(w#jar*o9lum1e@8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['.onrender.com']
+ALLOWED_HOSTS = ["*"]  # أو لاحقًا ضيف الدومين اللي هيديهولك Railway
+
 
 
 
@@ -51,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 ROOT_URLCONF = 'paypal_project.urls'
 
@@ -129,13 +131,16 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # PayPal Sandbox Credentials
 # settings.py
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 
 import os
 
-SECRET_KEY = os.environ.get("SECRET_KEY")
-PAYPAL_CLIENT_ID = os.environ.get("PAYPAL_CLIENT_ID")
-PAYPAL_SECRET = os.environ.get("PAYPAL_SECRET")
+SECRET_KEY = os.environ.get("SECRET_KEY", "unsafe-default")
+PAYPAL_CLIENT_ID = os.environ.get("PAYPAL_CLIENT_ID", "")
+PAYPAL_SECRET = os.environ.get("PAYPAL_SECRET", "")
+
+DEBUG = os.environ.get("DEBUG", "False") == "True"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
