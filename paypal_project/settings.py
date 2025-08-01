@@ -119,7 +119,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [ BASE_DIR / "static" ]
-import os
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
@@ -130,8 +129,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # PayPal Sandbox Credentials
 # settings.py
 
-PAYPAL_CLIENT_ID = "ATRd0czBkKLOvfndXb0bxJGDBREF5SCvYs7hZRl1VIY-TbhCe0CxXxyvUaM9FmkUn_T10tiXvKo1an8B"
-PAYPAL_SECRET = "EBfQfechWBHtfPONkU_lIlcpi7v72hky473TmSvkOBMLnwmJJf_gyfuv46nxGk-dDSX61HqVVIlaMzKv"
+import os
+
+SECRET_KEY = os.environ.get("SECRET_KEY")
+PAYPAL_CLIENT_ID = os.environ.get("PAYPAL_CLIENT_ID")
+PAYPAL_SECRET = os.environ.get("PAYPAL_SECRET")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
